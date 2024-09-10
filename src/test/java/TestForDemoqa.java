@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class TestsForDemoqa {
+public class TestForDemoqa {
 
     @BeforeAll
     static void setUp(){
@@ -31,6 +31,8 @@ public class TestsForDemoqa {
         String currentAddress = "London, Great Britain";
         String state = "NCR";
         String city = "Noida";
+        String monthOfBirth = "April";
+        String yearOfBirth = "2000";
 
         open("/automation-practice-form");
 
@@ -44,7 +46,9 @@ public class TestsForDemoqa {
         $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber-wrapper #userNumber").setValue(phoneNumber);
         $("#dateOfBirthInput").click();
-        $("[aria-label=\"Choose Sunday, September 1st, 2024\"]").click();
+        $(".react-datepicker__month-select").$(byText(monthOfBirth)).click();
+        $(".react-datepicker__year-select").$(byText(yearOfBirth)).click();
+        $("[class = \"react-datepicker__day react-datepicker__day--008 react-datepicker__day--weekend\"]").click();
         $("#subjectsWrapper #subjectsInput").setValue(subject).pressEnter();
         $("#hobbiesWrapper").$(byText(hobby)).click();
         $(".form-file #uploadPicture").uploadFromClasspath(pictureName);
@@ -59,7 +63,7 @@ public class TestsForDemoqa {
         $(".table-responsive").shouldHave(text(userEmail));
         $(".table-responsive").shouldHave(text(gender));
         $(".table-responsive").shouldHave(text(phoneNumber));
-        $(".table-responsive").shouldHave(text("1 September,2024"));
+        $(".table-responsive").shouldHave(text("08 April,2000"));
         $(".table-responsive").shouldHave(text(subject));
         $(".table-responsive").shouldHave(text(hobby));
         $(".table-responsive").shouldHave(text(pictureName));
